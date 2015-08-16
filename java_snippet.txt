@@ -1,0 +1,13 @@
+	/**indicates if two line primitives' R vectors intersect **/
+	private boolean checkCollision(LinePrimitive U, LinePrimitive V){
+		
+		float invFactor = (U.R.y * V.R.x) - (U.R.x*V.R.y);
+		float sign = Math.signum(invFactor);
+		float alpha = sign*(V.R.y*(U.base.x-V.base.x) + V.R.x*(V.base.y-U.base.y)); //U vector coefficient
+		float beta = sign*(U.R.y*(U.base.x-V.base.x) + U.R.x*(V.base.y-U.base.y)); //V vector coeff
+
+		if ((0 < alpha) && (alpha < sign*invFactor) && (0 < beta) && (beta < sign*invFactor)) { 
+			return true; }
+		else {
+			return false; }
+	}
